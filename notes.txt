@@ -1,0 +1,21 @@
+- Amhdal's law
+- Gustafson's law
+
+- Context switch overhead 
+    - switching tasks requires a small amount of time for CPU to perform
+    - not a problem unless we have a large amount of tasks, in that case CPU is doing more time context switching rather than doing some useful work
+    - can be solved using Green Threads
+
+- Kernel level thread decides when to swap out the thread and swap in another one
+
+- Green thread is a user level thread, in this case kernel doesn't decide about context switching, but the program itself
+    - disadvantage: kernel thread doesn't know anything about green thread, so in case that green thread is waiting for some data or IO
+        kernel thread will realize that the green thread is waiting for data and will remove the thread from execution
+
+- Golang uses a mixture of kernel and green Threads
+- it creates a kernel thread for each CPU we have, and a number of green threads for each of these
+
+[MEMORY SHARING]
+- Inter-process communication (IPC) two ways:
+    - 1. Message passing
+    - 2. Shared memory
